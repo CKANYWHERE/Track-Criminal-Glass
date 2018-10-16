@@ -9,6 +9,6 @@ while(1):
     ret,frame = capture.read()
     cv2.imshow('webcam',frame)
     if cv2.waitKey(1) == ord('q'):
-        break;혓
+        break;
 capture.release()
 cv2.destroyAllWindows()
