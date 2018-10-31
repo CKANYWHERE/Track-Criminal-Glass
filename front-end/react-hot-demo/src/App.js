@@ -1,10 +1,9 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import Track from './Track-Component/Track-Main'
 
 const App = () => (
-  <Button variant="contained" color="primary">
-    Hello World
-  </Button>
+  <Track variant="contained" color="primary">
+  </Track>
 );
 
 export default App;
