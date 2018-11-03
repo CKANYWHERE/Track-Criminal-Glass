@@ -15,9 +15,14 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/DashboardRounded';
-import MailIcon from '@material-ui/icons/AccessibilityNew';
+import TrackIcon from '@material-ui/icons/AccessibilityNew';
+import ListIcon from '@material-ui/icons/ListAltOutlined';
+import TextField from '@material-ui/core/TextField';
+import SearchIcon from '@material-ui/icons/Search';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import PictureComponent from './Picture-Component';
 
-const drawerWidth = 240;
+const drawerWidth = 400;
 
 const styles = theme => ({
   root: {
@@ -52,9 +57,14 @@ const styles = theme => ({
   navtop:{
     textAlign:'center'
   },
+  textField: {
+    marginLeft: 600,
+    marginRight: 20,
+    width: 700,
+  },
 });
 
-class ResponsiveDrawer extends React.Component {
+class TrackMain extends React.Component {
   state = {
     mobileOpen: false,
   };
@@ -80,13 +90,38 @@ class ResponsiveDrawer extends React.Component {
         <List>
           {['대시보드', '범인추가', '범인리스트'].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemIcon>
+                {index === 0 ? <InboxIcon />: false} 
+                {index === 1 ? <TrackIcon />: false}
+                {index === 2 ? <ListIcon />:false}
+              </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
         </List>
       </div>
     );
+    
+  const SearchBar = (
+    <div>
+      <TextField
+        id="standard-search"
+        type="search"
+        inputProps={{ style: { fontFamily: 'Arial', color: 'inherit'}}}
+        style={{ color: 'white',backgroundColor:'white'}}
+        className={classes.textField}
+        color="inherit"
+        variant="outlined"
+        InputProps ={{
+         startAdornment:<InputAdornment position = "start"> 
+         <IconButton><SearchIcon /></IconButton>
+         </InputAdornment>
+        }}
+      >
+      </TextField>
+      
+    </div>
+  );
 
     return (
       <div className={classes.root}>
@@ -102,8 +137,9 @@ class ResponsiveDrawer extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" noWrap>
-              Responsive drawer
+              DashBoard
             </Typography>
+            {SearchBar}
           </Toolbar>
         </AppBar>
         <nav className={classes.drawer}>
@@ -127,37 +163,14 @@ class ResponsiveDrawer extends React.Component {
         </nav>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <Typography paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent
-            elementum facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in
-            hendrerit gravida rutrum quisque non tellus. Convallis convallis tellus id interdum
-            velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing.
-            Amet nisl suscipit adipiscing bibendum est ultricies integer quis. Cursus euismod quis
-            viverra nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum leo.
-            Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus
-            at augue. At augue eget arcu dictum varius duis at consectetur lorem. Velit sed
-            ullamcorper morbi tincidunt. Lorem donec massa sapien faucibus et molestie ac.
-          </Typography>
-          <Typography paragraph>
-            Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-            facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-            tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-            consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus
-            sed vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in.
-            In hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-            et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique
-            sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo
-            viverra maecenas accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam
-            ultrices sagittis orci a.
-          </Typography>
+            <PictureComponent />       
         </main>
       </div>
     );
   }
 }
 
-ResponsiveDrawer.propTypes = {
+TrackMain.propTypes = {
   classes: PropTypes.object.isRequired,
   // Injected by the documentation to work in an iframe.
   // You won't need it on your project.
@@ -165,4 +178,4 @@ ResponsiveDrawer.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);
+export default withStyles(styles, { withTheme: true })(TrackMain);
