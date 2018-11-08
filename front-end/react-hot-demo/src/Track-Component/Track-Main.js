@@ -21,6 +21,9 @@ import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import PictureComponent from './Picture-Component';
+import Grid from '@material-ui/core/Grid';
+import Information from './Information';
+import Chart from './Chart';
 
 const drawerWidth = 400;
 
@@ -61,6 +64,9 @@ const styles = theme => ({
     marginLeft: 600,
     marginRight: 20,
     width: 700,
+  },
+  grid:{
+    flexGrow:1,
   },
 });
 
@@ -163,7 +169,22 @@ class TrackMain extends React.Component {
         </nav>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-            <PictureComponent />       
+            <div className={classes.grid}>
+            <Grid container spacing={24}>
+              <Grid item xs={6}>
+                <PictureComponent />
+              </Grid>   
+              <Grid item xs={6}>
+                <Information />
+              </Grid>
+              
+              <Grid container justify="center">
+              <div><Chart/></div>
+              </Grid>
+
+            </Grid>
+          
+            </div>
         </main>
       </div>
     );
