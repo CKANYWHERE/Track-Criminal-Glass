@@ -24,6 +24,9 @@ import PictureComponent from './Picture-Component';
 import Grid from '@material-ui/core/Grid';
 import Information from './Information';
 import Chart from './Chart';
+import MyDrawer from '../Static-Component/MyDrawer';
+
+
 
 const drawerWidth = 400;
 
@@ -78,7 +81,7 @@ class TrackMain extends React.Component {
   handleDrawerToggle = () => {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
-
+  
   render() {
     const { classes, theme } = this.props;
 
@@ -86,7 +89,7 @@ class TrackMain extends React.Component {
       <div>
         <div className={classes.toolbar} />
         
-        {<div class={classes.navtop}>
+        {<div classes={classes.navtop}>
           <Typography variant="h6" color="inherit" >
           Hello, Admin</Typography>
           </div>
@@ -150,11 +153,7 @@ class TrackMain extends React.Component {
         </AppBar>
         <nav className={classes.drawer}>
           {/* The implementation can be swap with js to avoid SEO duplication of links. */}
-          <Hidden smUp implementation="css">
-            <Drawer>
-              {drawer}
-            </Drawer>
-          </Hidden>
+        
           <Hidden xsDown implementation="css">
             <Drawer
               classes={{
@@ -163,7 +162,10 @@ class TrackMain extends React.Component {
               variant="permanent"
               open
             >
+          
+            <div>
               {drawer}
+            </div>
             </Drawer>
           </Hidden>
         </nav>
